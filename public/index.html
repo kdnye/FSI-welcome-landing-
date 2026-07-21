@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FSI App Suite — Freight Services</title>
+  <meta name="description" content="Welcome to the Freight Services app suite. One place to reach Quotes, POD, Expenses, Lifecycle, Comms, and Asset Tracking.">
+
+  <!-- Theme before first paint (FSI standard: no FOUC; sets both attributes). -->
+  <script>
+    (function () {
+      var stored = null;
+      try { stored = localStorage.getItem('fsiTheme'); } catch (e) {}
+      var dark = stored ? stored === 'dark'
+        : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var mode = dark ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', mode);
+      document.documentElement.setAttribute('data-bs-theme', mode);
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/fsi.css">
+  <link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+
+  <nav class="app-nav">
+    <div class="app-nav__inner">
+      <a class="app-nav__brand" href="/">
+        <span class="mark">FSI</span>
+        Freight Services
+      </a>
+      <div class="app-nav__spacer"></div>
+      <button type="button" class="fleet-btn fleet-btn--secondary fleet-btn--sm" id="theme-toggle"
+              aria-label="Toggle dark mode">
+        <span data-theme-label>Theme</span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="app-main">
+
+    <header class="home-hero">
+      <p class="eyebrow">Freight Services Internal Tools</p>
+      <h1 class="home-hero__title fsi-display">Welcome to the FSI App Suite</h1>
+      <p class="page-subtitle home-hero__subtitle">
+        One place to reach every Freight Services application. Sign-in is the
+        same account across the suite.
+      </p>
+    </header>
+
+    <!--
+      Service directory.
+      To add / edit a service: copy one <a class="home-card"> block below and
+      change the href, title, domain, and description. Nothing else to touch.
+    -->
+    <h2 class="section-title">Applications</h2>
+    <div class="home-grid">
+
+      <a class="fleet-card home-card" href="https://quote.freightservices.net">
+        <div class="fleet-card__body">
+          <div class="home-card__top">
+            <h3 class="home-card__title">Quotes</h3>
+            <span class="fleet-badge is-info"><span class="dot"></span>Operations</span>
+          </div>
+          <p class="home-card__desc">Freight rate quoting — hotshot and air freight rates, accessorials, and quote history.</p>
+          <span class="home-card__domain mono">quote.freightservices.net</span>
+        </div>
+      </a>
+
+      <a class="fleet-card home-card" href="https://pod.freightservices.net">
+        <div class="fleet-card__body">
+          <div class="home-card__top">
+            <h3 class="home-card__title">POD</h3>
+            <span class="fleet-badge is-info"><span class="dot"></span>Operations</span>
+          </div>
+          <p class="home-card__desc">Proof-of-delivery capture and delivery tracking.</p>
+          <span class="home-card__domain mono">pod.freightservices.net</span>
+        </div>
+      </a>
+
+      <a class="fleet-card home-card" href="https://assets.freightservices.net">
+        <div class="fleet-card__body">
+          <div class="home-card__top">
+            <h3 class="home-card__title">Asset Tracking</h3>
+            <span class="fleet-badge is-info"><span class="dot"></span>Operations</span>
+          </div>
+          <p class="home-card__desc">Live edge-asset dashboard — Pi node locations, BLE inventory, and shipment tracking.</p>
+          <span class="home-card__domain mono">assets.freightservices.net</span>
+        </div>
+      </a>
+
+      <a class="fleet-card home-card" href="https://expenses.freightservices.net">
+        <div class="fleet-card__body">
+          <div class="home-card__top">
+            <h3 class="home-card__title">Expenses</h3>
+            <span class="fleet-badge is-muted"><span class="dot"></span>Back office</span>
+          </div>
+          <p class="home-card__desc">Employee expense reports — submission, supervisor review, and finance export.</p>
+          <span class="home-card__domain mono">expenses.freightservices.net</span>
+        </div>
+      </a>
+
+      <a class="fleet-card home-card" href="https://lifecycle.freightservices.net">
+        <div class="fleet-card__body">
+          <div class="home-card__top">
+            <h3 class="home-card__title">Employee Lifecycle</h3>
+            <span class="fleet-badge is-muted"><span class="dot"></span>Back office</span>
+          </div>
+          <p class="home-card__desc">Onboarding and offboarding workflows plus hardware asset inventory.</p>
+          <span class="home-card__domain mono">lifecycle.freightservices.net</span>
+        </div>
+      </a>
+
+      <a class="fleet-card home-card" href="https://comms.freightservices.net">
+        <div class="fleet-card__body">
+          <div class="home-card__top">
+            <h3 class="home-card__title">Internal Comms</h3>
+            <span class="fleet-badge is-ok"><span class="dot"></span>New</span>
+          </div>
+          <p class="home-card__desc">Searchable archive of the app suite's internal email traffic (FSI Inbox).</p>
+          <span class="home-card__domain mono">comms.freightservices.net</span>
+        </div>
+      </a>
+
+    </div>
+
+    <footer class="home-footer">
+      <span class="muted">Freight Services &middot; internal use &middot; questions? contact IT</span>
+    </footer>
+
+  </main>
+
+  <script>
+    (function () {
+      var btn = document.getElementById('theme-toggle');
+      var label = btn.querySelector('[data-theme-label]');
+      var root = document.documentElement;
+      function paint() {
+        label.textContent = root.getAttribute('data-theme') === 'dark' ? 'Light mode' : 'Dark mode';
+      }
+      btn.addEventListener('click', function () {
+        var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        root.setAttribute('data-bs-theme', next);
+        try { localStorage.setItem('fsiTheme', next); } catch (e) {}
+        paint();
+      });
+      paint();
+    })();
+  </script>
+</body>
+</html>
