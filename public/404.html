@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found — FSI App Suite</title>
+  <script>
+    (function () {
+      var stored = null;
+      try { stored = localStorage.getItem('fsiTheme'); } catch (e) {}
+      var dark = stored ? stored === 'dark'
+        : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var mode = dark ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', mode);
+      document.documentElement.setAttribute('data-bs-theme', mode);
+    })();
+  </script>
+  <link rel="stylesheet" href="/css/fsi.css">
+</head>
+<body>
+  <main class="app-main" style="text-align:center; padding-top: 96px;">
+    <p class="eyebrow">404</p>
+    <h1 class="page-title">Page not found</h1>
+    <p class="muted">There's nothing at this address.</p>
+    <p><a class="fleet-btn fleet-btn--primary" href="/">Back to the app suite</a></p>
+  </main>
+</body>
+</html>
