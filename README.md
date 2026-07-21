@@ -1,0 +1,1 @@
+I want to launce a basic page on a sub domain that is a welcome to the FSI appsuite and links to all mapped services maybe home.freightservices.net not sure the  best way to host a simpole non app page like that, it should still use the fleet ui kit from design if possible
