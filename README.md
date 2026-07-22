@@ -55,6 +55,12 @@ Each service is one `<a class="fleet-card home-card">` block in
 `public/index.html`. Copy a block, change the href, title, domain, and
 description. No build step.
 
+Apps on FSI Internal Suite SSO (expenses, lifecycle, comms, pod) link
+directly to their Microsoft sign-in route (`/login/oidc` on expenses,
+`/auth/login/oidc` on the rest) so one click from home lands on SSO.
+Quotes (separate app registration) and assets (Streamlit shows its own
+sign-in page at the root) keep plain root links.
+
 ## Deployment
 
 ```bash
