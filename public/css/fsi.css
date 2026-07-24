@@ -19,6 +19,11 @@
   --accent-hover: #1c53a1;
   --accent-subtle: #e9f1f9;
 
+  /* Link colour. Separate from --accent because the dark accent (#1c53a1) only
+     reaches 2.2:1 on the dark surface — well under the 4.5:1 WCAG AA needs for
+     body text. In light the brand blue already passes at 5.2:1 on white. */
+  --link: var(--accent);
+
   /* Operational status (semantic — never rebrand) */
   --success: #16a34a;
   --warning: #d97706;
@@ -87,6 +92,7 @@
   --accent: #1c53a1;
   --accent-hover: #2d6fb7;
   --accent-subtle: #14243b;
+  --link: #6ea8e6;   /* 6.5:1 on --surface, 7.3:1 on --bg */
 
   /* Only the chip foregrounds flip — the tints above already track the page. */
   --ok-fg: #86efac;
@@ -110,6 +116,7 @@
     --accent: #1c53a1;
     --accent-hover: #2d6fb7;
     --accent-subtle: #14243b;
+    --link: #6ea8e6;   /* 6.5:1 on --surface, 7.3:1 on --bg */
 
     --ok-fg: #86efac;
     --warn-fg: #fcd34d;
@@ -134,7 +141,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-a { color: var(--accent); text-decoration: none; }
+a { color: var(--link); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 h1, h2, h3, h4 { color: var(--text); line-height: 1.2; margin: 0 0 var(--space-3); }
@@ -161,8 +168,15 @@ h1, h2, h3, h4 { color: var(--text); line-height: 1.2; margin: 0 0 var(--space-3
   display: flex; align-items: center; gap: var(--space-4);
   padding: var(--space-3) var(--space-4);
 }
+/* The brand wordmark is display type — Bebas Neue uppercase, matching the
+   navbar brand in the Bootstrap-based FSI apps (FSI EXPENSE REPORTING,
+   FSI LIFECYCLE). Bebas is condensed, so it needs a size bump and tracking to
+   carry the same weight as the Lato it replaces. */
 .app-nav__brand {
-  font-weight: 700; font-size: var(--text-lg); color: var(--text);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-weight: 400; font-size: var(--text-xl); color: var(--text);
   display: inline-flex; align-items: center; gap: var(--space-2);
 }
 .app-nav__brand:hover { text-decoration: none; }
@@ -188,7 +202,14 @@ h1, h2, h3, h4 { color: var(--text); line-height: 1.2; margin: 0 0 var(--space-3
 }
 .page-title { font-size: var(--text-2xl); font-weight: 700; letter-spacing: -.01em; margin: 0 0 var(--space-1); }
 .page-subtitle { color: var(--text-muted); margin: 0; }
-.section-title { font-size: var(--text-lg); font-weight: 600; margin: 0 0 var(--space-3); }
+/* Section headings are display type, matching .fsi-section-title in the
+   Bootstrap-based FSI apps (uppercase Bebas Neue at --text-xl). */
+.section-title {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  font-size: var(--text-xl); font-weight: 400; margin: 0 0 var(--space-3);
+}
 
 /* ------------------------------------------------------------- Buttons ---- */
 .fleet-btn {
