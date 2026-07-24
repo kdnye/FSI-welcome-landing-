@@ -6,30 +6,35 @@
    ============================================================================ */
 
 :root {
-  /* Neutrals */
-  --bg: #f8fafc;
+  /* Neutrals — FSI light standard */
+  --bg: #f2f2f2;
   --surface: #ffffff;
-  --surface-alt: #f1f5f9;
-  --border: #e2e8f0;
-  --text: #0f172a;
-  --text-muted: #64748b;
+  --surface-alt: #e8e8e8;
+  --border: #d8d8d8;
+  --text: #111111;
+  --text-muted: #555555;
 
-  /* Brand accent */
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --accent-subtle: #eff6ff;
+  /* Brand accent — FSI blue ramp */
+  --accent: #2d6fb7;
+  --accent-hover: #1c53a1;
+  --accent-subtle: #e9f1f9;
 
-  /* Operational status */
+  /* Operational status (semantic — never rebrand) */
   --success: #16a34a;
   --warning: #d97706;
   --danger:  #dc2626;
   --info:    #0891b2;
 
-  /* Status "soft" chips (fg / bg / border) */
-  --ok-fg: #166534;   --ok-bg: #f0fdf4;   --ok-bd: #bbf7d0;
-  --warn-fg: #92400e; --warn-bg: #fffbeb; --warn-bd: #fde68a;
-  --bad-fg: #991b1b;  --bad-bg: #fef2f2;  --bad-bd: #fecaca;
-  --info-fg: #155e75; --info-bg: #ecfeff; --info-bd: #a5f3fc;
+  /* Status chips (fg / bg / border) — status-tint pattern.
+     The fills were opaque pastels (#f0fdf4 / #fffbeb / #fef2f2 / #ecfeff) that
+     floated on the dark surface, which is why the dark block had to restate
+     them. They are now translucent tints identical in both themes, so only the
+     foreground flips: a dark, high-contrast hue in light, a bright tint in
+     dark. Dark therefore only overrides the *-fg values. */
+  --ok-fg: #166534;   --ok-bg: rgba(22,163,74,.12);   --ok-bd: rgba(22,163,74,.35);
+  --warn-fg: #92400e; --warn-bg: rgba(217,119,6,.12); --warn-bd: rgba(217,119,6,.35);
+  --bad-fg: #991b1b;  --bad-bg: rgba(220,38,38,.12);  --bad-bd: rgba(220,38,38,.35);
+  --info-fg: #155e75; --info-bg: rgba(8,145,178,.12); --info-bd: rgba(8,145,178,.35);
 
   /* Radius */
   --radius-sm: 6px;
@@ -44,13 +49,14 @@
   --text-xs: 12px; --text-sm: 14px; --text-base: 16px;
   --text-lg: 18px; --text-xl: 24px; --text-2xl: 32px;
 
-  /* Type */
-  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  /* Type — FSI: Lato for body/UI, Bebas Neue for display headings */
+  --font: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: 'Bebas Neue', 'Oswald', 'Arial Narrow', Impact, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  /* Elevation */
-  --shadow: 0 1px 2px rgba(15, 23, 42, .06), 0 1px 3px rgba(15, 23, 42, .1);
-  --shadow-lg: 0 4px 6px -1px rgba(15, 23, 42, .08), 0 10px 15px -3px rgba(15, 23, 42, .1);
+  /* Elevation (neutral-black based, matching FSI #111) */
+  --shadow: 0 1px 2px rgba(17, 17, 17, .06), 0 1px 3px rgba(17, 17, 17, .1);
+  --shadow-lg: 0 4px 6px -1px rgba(17, 17, 17, .08), 0 10px 15px -3px rgba(17, 17, 17, .1);
 
   /* --- Legacy FSI token aliases (so .fsi-* consumers keep resolving) --- */
   --color-bg: var(--bg);
@@ -62,30 +68,57 @@
   --color-primary-hover: var(--accent-hover);
   --brand-primary: var(--accent);
   --font-family-body: var(--font);
-  --font-family-display: var(--font);
+  --font-family-display: var(--font-display);
 }
 
-/* Dark mode — dual selectors for Bootstrap 5 (data-bs-theme) and custom (data-theme). */
+/* Dark mode — navy; blues taken from the site's darkest.
+   Applies via dual explicit selectors (Bootstrap 5 data-bs-theme and custom
+   data-theme) AND by OS preference, so the app is correct before the theme
+   script runs and for anyone on "auto". Keep the two blocks in sync. */
 :root[data-bs-theme='dark'],
 :root[data-theme='dark'] {
-  --bg: #0f172a;
-  --surface: #1e293b;
-  --surface-alt: #243043;
-  --border: #334155;
-  --text: #e2e8f0;
-  --text-muted: #94a3b8;
+  --bg: #0a1626;
+  --surface: #10203a;
+  --surface-alt: #172b47;
+  --border: #1c3253;
+  --text: #eaf1f9;
+  --text-muted: #9db4d0;
 
-  --accent: #3b82f6;
-  --accent-hover: #60a5fa;
-  --accent-subtle: rgba(59, 130, 246, .16);
+  --accent: #1c53a1;
+  --accent-hover: #2d6fb7;
+  --accent-subtle: #14243b;
 
-  --ok-fg: #86efac;   --ok-bg: rgba(22,163,74,.16);  --ok-bd: rgba(22,163,74,.42);
-  --warn-fg: #fcd34d; --warn-bg: rgba(217,119,6,.16); --warn-bd: rgba(217,119,6,.42);
-  --bad-fg: #fca5a5;  --bad-bg: rgba(220,38,38,.16);  --bad-bd: rgba(220,38,38,.42);
-  --info-fg: #67e8f9; --info-bg: rgba(8,145,178,.16); --info-bd: rgba(8,145,178,.42);
+  /* Only the chip foregrounds flip — the tints above already track the page. */
+  --ok-fg: #86efac;
+  --warn-fg: #fcd34d;
+  --bad-fg: #fca5a5;
+  --info-fg: #67e8f9;
 
-  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 1px 3px rgba(0, 0, 0, .4);
-  --shadow-lg: 0 4px 6px -1px rgba(0, 0, 0, .4), 0 10px 15px -3px rgba(0, 0, 0, .5);
+  --shadow: 0 1px 2px rgba(0, 0, 0, .40), 0 1px 3px rgba(0, 0, 0, .50);
+  --shadow-lg: 0 4px 6px -1px rgba(0, 0, 0, .50), 0 10px 15px -3px rgba(0, 0, 0, .55);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']):not([data-bs-theme='light']) {
+    --bg: #0a1626;
+    --surface: #10203a;
+    --surface-alt: #172b47;
+    --border: #1c3253;
+    --text: #eaf1f9;
+    --text-muted: #9db4d0;
+
+    --accent: #1c53a1;
+    --accent-hover: #2d6fb7;
+    --accent-subtle: #14243b;
+
+    --ok-fg: #86efac;
+    --warn-fg: #fcd34d;
+    --bad-fg: #fca5a5;
+    --info-fg: #67e8f9;
+
+    --shadow: 0 1px 2px rgba(0, 0, 0, .40), 0 1px 3px rgba(0, 0, 0, .50);
+    --shadow-lg: 0 4px 6px -1px rgba(0, 0, 0, .50), 0 10px 15px -3px rgba(0, 0, 0, .55);
+  }
 }
 
 /* ---------------------------------------------------------------- Base ---- */
@@ -282,7 +315,7 @@ h1, h2, h3, h4 { color: var(--text); line-height: 1.2; margin: 0 0 var(--space-3
 .fleet-field input:focus, .fleet-field select:focus, .fleet-field textarea:focus, .fleet-input:focus {
   border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-subtle);
 }
-.fleet-field input::placeholder { color: #94a3b8; }
+.fleet-field input::placeholder { color: var(--text-muted); }
 .fleet-field.is-invalid input { border-color: var(--danger); }
 .fleet-field input:disabled { background: var(--surface-alt); color: var(--text-muted); cursor: not-allowed; }
 
